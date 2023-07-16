@@ -24,5 +24,5 @@ class PLVideo(Video):
         self.playlist_id = playlist_id
         self.playlist_videos = youtube.playlistItems().list(playlistId=playlist_id,
                                                             part='contentDetails',
-                                                            maxResults=1,
+                                                            maxResults=50,
                                                             ).execute()
