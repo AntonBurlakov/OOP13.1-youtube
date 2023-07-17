@@ -1,9 +1,8 @@
 
-from helper.youtube_api_manual import youtube
-from src.channel import Channel
+from src.mixingetservice import MixinGetService
 
 
-class Video(Channel):
+class Video(MixinGetService):
     def __init__(self, video_id: str) -> None:
         """Экземпляр инициализируется id видео. Дальше все данные будут подтягиваться по API."""
         self.video_id = video_id
@@ -22,7 +21,7 @@ class PLVideo(Video):
     def __init__(self, video_id, playlist_id):
         super().__init__(video_id)
         self.playlist_id = playlist_id
-        self.playlist_videos = youtube.playlistItems().list(playlistId=playlist_id,
-                                                            part='contentDetails',
-                                                            maxResults=50,
-                                                            ).execute()
+        self.playlist_videos = self.get_service().playlistItems().list(playlistId=playlist_id,
+                                                                       part='contentDetails',
+                                                                       maxResults=50,
+                                                                       ).execute()
