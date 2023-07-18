@@ -5,11 +5,11 @@ from src.mixingetservice import MixinGetService
 class Video(MixinGetService):
     def __init__(self, video_id: str) -> None:
         """Экземпляр инициализируется id видео. Дальше все данные будут подтягиваться по API."""
-        self.video_id = video_id
-        self.video = Video.get_service().videos().list(id=video_id, part='snippet,statistics').execute()
-        self.id = self.video['items'][0]['id']
+        self.__video_id = video_id
+        self.video = self.get_service().videos().list(id=video_id, part='snippet,statistics').execute()
+        self.id = self.__video_id
         self.title_video = self.video['items'][0]['snippet']['title']
-        self.url = 'https://www.moscowpython.ru/meetup/14/gil-and-python-why/'
+        self.url = f'https://youtu.be/{self.__video_id}'
         self.view_count = self.video['items'][0]['statistics']['viewCount']
         self.like_count = self.video['items'][0]['statistics']['likeCount']
 
@@ -21,7 +21,3 @@ class PLVideo(Video):
     def __init__(self, video_id, playlist_id):
         super().__init__(video_id)
         self.playlist_id = playlist_id
-        self.playlist_videos = self.get_service().playlistItems().list(playlistId=playlist_id,
-                                                                       part='contentDetails',
-                                                                       maxResults=50,
-                                                                       ).execute()

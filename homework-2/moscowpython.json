@@ -1,8 +1,8 @@
 {
-  "channel_id": "Новое название",
+  "_Channel__channel_id": "UC-OVMPlMA3-YCIeg4z5z23A",
   "channel": {
     "kind": "youtube#channelListResponse",
-    "etag": "iOAiqi9VNInaAWvdhB8E5KKbeiI",
+    "etag": "WKFqajRG1RHgNvra_Hsy4PRzyjM",
     "pageInfo": {
       "totalResults": 1,
       "resultsPerPage": 5
@@ -10,7 +10,7 @@
     "items": [
       {
         "kind": "youtube#channel",
-        "etag": "AMHqbOzgA61Xp8QZbd7DicZY33g",
+        "etag": "Bk416pDSiiF2gak64chKIpyLdTE",
         "id": "UC-OVMPlMA3-YCIeg4z5z23A",
         "snippet": {
           "title": "MoscowPython",
@@ -41,10 +41,10 @@
           "country": "RU"
         },
         "statistics": {
-          "viewCount": "2346985",
+          "viewCount": "2350743",
           "subscriberCount": "26200",
           "hiddenSubscriberCount": false,
-          "videoCount": "693"
+          "videoCount": "694"
         }
       }
     ]
@@ -55,6 +55,7 @@
   "custom_url": "@moscowdjangoru",
   "url": "https://www.youtube.com/@moscowdjangoru",
   "subscriber_count": "26200",
-  "video_count": "693",
-  "view_count": "2346985"
+  "video_count": "694",
+  "view_count": "2350743",
+  "channel_id": "Новое название"
 }
