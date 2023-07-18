@@ -1,13 +1,12 @@
 import json
 import os
 
-from googleapiclient.discovery import build
+from src.mixingetservice import MixinGetService
 
 
-class Channel:
+class Channel(MixinGetService):
     """Класс для ютуб-канала"""
     api_key: str = os.getenv('YT_API_KEY')
-    youtube = build('youtube', 'v3', developerKey=api_key)
 
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
@@ -49,10 +48,6 @@ class Channel:
         """Метод для операции сравнения «больше
         или равно»"""
         return self.subscriber_count >= other.subscriber_count
-
-    @classmethod
-    def get_service(cls):
-        return build('youtube', 'v3', developerKey=cls.api_key)
 
     def to_json(self, path):
         data = self.__dict__
