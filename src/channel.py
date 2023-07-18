@@ -10,8 +10,8 @@ class Channel(MixinGetService):
 
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
-        self.channel_id = channel_id
-        self.channel = Channel.get_service().channels().list(id=channel_id, part='snippet,statistics').execute()
+        self.__channel_id = channel_id
+        self.channel = self.get_service().channels().list(id=channel_id, part='snippet,statistics').execute()
 
         self.id = self.channel['items'][0]['id']
         self.title = self.channel['items'][0]['snippet']['title']
@@ -49,8 +49,20 @@ class Channel(MixinGetService):
         или равно»"""
         return self.subscriber_count >= other.subscriber_count
 
+    @property
+    def channel_id(self) -> str:
+        return self.__channel_id
+
     def to_json(self, path):
-        data = self.__dict__
+        data = {
+            'channel_id': self.__channel_id,
+            'title': self.title,
+            'description': self.description,
+            'url': self.url,
+            'subscriber_count': self.subscriber_count,
+            'video_count': self.video_count,
+            'view_count': self.view_count,
+        }
         with open(path, 'w') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
 

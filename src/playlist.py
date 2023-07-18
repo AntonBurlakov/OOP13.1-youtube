@@ -46,10 +46,10 @@ class PlayList(MixinGetService):
     def show_best_video(self, ):
         playlists = self.get_playlist_videos()
         max_likes = 0
-        _video_id = ''
+        video_id = ''
         for video in playlists['items']:
             like_count = int(video['statistics']['likeCount'])
             if like_count > max_likes:
                 max_likes = like_count
-                _video_id = (video['id'])
-        return f'\"https://youtu.be/{_video_id}\"'
+                video_id = (video['id'])
+        return f'https://youtu.be/{video_id}'
